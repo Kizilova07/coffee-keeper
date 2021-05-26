@@ -1,0 +1,19 @@
+.horiz-tab-label {
+    -fx-rotate: 90;
+-fx-pref-width: 56;
+-fx-max-width: 70;
+-fx-pref-height: 55;
+-fx-max-height:50;
+-fx-font-size: 11px;
+}
+
+.vTabPane {
+    -fx-tab-min-width:55;
+        -fx-tab-max-width:60;
+        -fx-tab-min-height:90;
+        -fx-tab-max-height:100;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-padding: 5px;
+}

@@ -1,0 +1,1 @@
+alter table sale_products drop constraint sale_products_retail_product_id_key;

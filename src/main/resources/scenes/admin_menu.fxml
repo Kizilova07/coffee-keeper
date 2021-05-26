@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.diploma.service.controller.AdminController">
+    <children>
+        <TabPane fx:id="main_tab_pane" layoutX="-9.0" layoutY="-3.0" prefHeight="509.0" prefWidth="814.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab fx:id="admin_menu_main_tab" text="Меню">
+                    <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <TabPane fx:id="menu_tab_pane" minHeight="-Infinity" prefHeight="465.0" prefWidth="800.0" rotateGraphic="true" side="LEFT" stylesheets="/scenes/style/left_vertical_tabs.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="200.0" tabMinHeight="90.0">
+                                    <tabs>
+                                        <Tab fx:id="raw_tab" styleClass="horiz-tab-label" text="Товары">
+                                            <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                    <children>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="721.0">
+                                                            <children>
+                                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dededeb6" height="48.0" layoutX="14.0" layoutY="14.0" stroke="#00000017" strokeType="INSIDE" width="693.0" />
+                                                                <TableView fx:id="raw_table" layoutX="15.0" layoutY="70.0" prefHeight="355.0" prefWidth="690.0">
+                                                                    <columns>
+                                                                        <TableColumn fx:id="raw_id_column" prefWidth="33.16363525390625" text="№" />
+                                                                        <TableColumn fx:id="raw_product_column" prefWidth="205.96368026733398" text="Товар" />
+                                                                        <TableColumn fx:id="raw_supplier_column" prefWidth="171.92718505859375" text="Поставщик" />
+                                                                        <TableColumn fx:id="raw_cost_column" prefWidth="106.47280883789062" text="Цена за ед." />
+                                                                        <TableColumn fx:id="raw_raw_cost_column" prefWidth="112.5819091796875" text="Себестоимость" />
+                                                                        <TableColumn fx:id="raw_detail_column" prefWidth="59.34537622877474" />
+                                                                    </columns>
+                                                                </TableView>
+                                                                <Label layoutX="39.0" layoutY="18.0" prefHeight="39.0" prefWidth="151.0" text="Список товаров">
+                                                                    <font>
+                                                                        <Font name="Tahoma Bold" size="18.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label fx:id="raw_amount" layoutX="192.0" layoutY="18.0" prefHeight="39.0" prefWidth="32.0" text="99">
+                                                                    <font>
+                                                                        <Font name="Tahoma" size="18.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Button fx:id="raw_add_btn" layoutX="603.0" layoutY="24.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" text="Добавить" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </children>
+                                                </AnchorPane>
+                                            </content>
+                                        </Tab>
+                                    </tabs>
+                                </TabPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="admin_warehouse_main_tab" text="Склад">
+                    <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <TabPane fx:id="warehouse_tab_pane" minHeight="-Infinity" prefHeight="464.0" prefWidth="800.0" rotateGraphic="true" side="LEFT" stylesheets="/scenes/style/left_vertical_tabs.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="200.0" tabMinHeight="90.0">
+                                    <tabs>
+                                        <Tab fx:id="remains_tab" styleClass="horiz-tab-label" text="Остатки">
+                                            <content>
+                                                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                                    <content>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="721.0">
+                                                            <children>
+                                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dededeb6" height="48.0" layoutX="14.0" layoutY="10.0" stroke="#00000017" strokeType="INSIDE" width="693.0" />
+                                                                <TableView fx:id="leaves_table" layoutX="15.0" layoutY="69.0" prefHeight="356.0" prefWidth="690.0">
+                                                                    <columns>
+                                                                        <TableColumn fx:id="leaves_name_column" prefWidth="39.272705078125" text="№" />
+                                                                        <TableColumn fx:id="leaves_product_column" prefWidth="467.78188705444336" text="Товар" />
+                                                                        <TableColumn fx:id="leaves_amount_column" prefWidth="184.14544677734375" text="На складе" />
+                                                                    </columns>
+                                                                </TableView>
+                                                                <Label layoutX="39.0" layoutY="14.0" prefHeight="39.0" prefWidth="111.0" text="Остатки на">
+                                                                    <font>
+                                                                        <Font name="Tahoma Bold" size="18.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label fx:id="leaves_current_date_label" layoutX="151.0" layoutY="14.0" prefHeight="39.0" prefWidth="134.0" text="11 августа">
+                                                                    <font>
+                                                                        <Font name="Tahoma Bold" size="18.0" />
+                                                                    </font>
+                                                                </Label>
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </content>
+                                                </ScrollPane>
+                                            </content>
+                                        </Tab>
+                                        <Tab fx:id="supplies_tab" styleClass="horiz-tab-label" text="Поставки">
+                                            <content>
+                                                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                                    <content>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="722.0">
+                                                            <children>
+                                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dededeb6" height="48.0" layoutX="14.0" layoutY="14.0" stroke="#00000017" strokeType="INSIDE" width="693.0" />
+                                                                <DatePicker fx:id="supplies_end_date_picker" layoutX="401.0" layoutY="24.0" prefHeight="27.0" prefWidth="158.0" promptText="Конечная дата" />
+                                                                <DatePicker fx:id="supplies_start_date_picker" layoutX="210.0" layoutY="24.0" prefHeight="27.0" prefWidth="167.0" promptText="Начальная дата" />
+                                                                <Label layoutX="39.0" layoutY="18.0" prefHeight="39.0" prefWidth="93.0" text="Поставки">
+                                                                    <font>
+                                                                        <Font name="Tahoma Bold" size="18.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label fx:id="supplies_amount" layoutX="140.0" layoutY="18.0" prefHeight="39.0" prefWidth="32.0" text="99">
+                                                                    <font>
+                                                                        <Font name="Tahoma" size="18.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <TableView fx:id="supplies_table" layoutX="14.0" layoutY="74.0" prefHeight="351.0" prefWidth="690.0">
+                                                                    <columns>
+                                                                        <TableColumn fx:id="supplies_date_column" prefWidth="96.00003433227539" text="Дата" />
+                                                                        <TableColumn fx:id="supplies_suppliers_column" prefWidth="133.52725982666016" text="Постащик" />
+                                                                        <TableColumn fx:id="supplies_product_column" prefWidth="149.23634338378906" text="Товар" />
+                                                                        <TableColumn fx:id="supplies_comment_column" prefWidth="170.18179321289062" text="Комментарий" />
+                                                                        <TableColumn fx:id="supplies_sum_column" prefWidth="78.5455322265625" text="Сумма" />
+                                                                        <TableColumn fx:id="supplies_details_column" prefWidth="61.963623046875" />
+                                                                    </columns>
+                                                                </TableView>
+                                                                <Label layoutX="386.0" layoutY="18.0" prefHeight="39.0" prefWidth="11.0" text="-">
+                                                                    <font>
+                                                                        <Font name="Tahoma Bold" size="18.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Button fx:id="supplies_add_btn" layoutX="592.0" layoutY="24.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" text="Добавить" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </content>
+                                                </ScrollPane>
+                                            </content>
+                                        </Tab>
+                                        <Tab fx:id="suppliers_tab" styleClass="horiz-tab-label" text="Вендоры">
+                                            <content>
+                                                <ScrollPane fx:id="suppliers_scroll" prefHeight="456.0" prefWidth="738.0">
+                                                    <content>
+                                                        <AnchorPane fx:id="suppliers_pane" minHeight="0.0" minWidth="0.0" prefHeight="462.0" prefWidth="723.0">
+                                                            <children>
+                                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dededeb6" height="53.0" layoutX="14.0" layoutY="12.0" stroke="#00000017" strokeType="INSIDE" width="689.0" />
+                                                                <Label layoutX="39.0" layoutY="18.0" prefHeight="39.0" prefWidth="93.0" text="Вендоры">
+                                                                    <font>
+                                                                        <Font name="Tahoma Bold" size="18.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Button fx:id="suppliers_add_btn" layoutX="596.0" layoutY="24.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" text="Добавить" />
+                                                                <Label fx:id="suppliers_amount" layoutX="132.0" layoutY="18.0" prefHeight="39.0" prefWidth="32.0" text="99">
+                                                                    <font>
+                                                                        <Font name="Tahoma" size="18.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <TableView fx:id="suppliers_table" layoutX="13.0" layoutY="74.0" prefHeight="368.0" prefWidth="690.0">
+                                                                    <columns>
+                                                                        <TableColumn fx:id="suppliers_numb_column" prefWidth="44.50909423828125" text="№" />
+                                                                        <TableColumn fx:id="suppliers_name_column" prefWidth="208.58178329467773" text="Название компании" />
+                                                                        <TableColumn fx:id="suppliers_address_column" prefWidth="207.70907592773438" text="Адрес" />
+                                                                        <TableColumn fx:id="suppliers_phone_column" prefWidth="147.49090576171875" text="Телефон" />
+                                                                        <TableColumn fx:id="suppliers_details_column" prefWidth="81.16357421875" />
+                                                                    </columns>
+                                                                </TableView>
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </content>
+                                                </ScrollPane>
+                                            </content>
+                                        </Tab>
+                                        <Tab fx:id="calcel_tab" styleClass="horiz-tab-label" text="Списание">
+                                            <content>
+                                                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                                    <content>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="722.0">
+                                                            <children>
+                                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dededeb6" height="48.0" layoutX="14.0" layoutY="14.0" stroke="#00000017" strokeType="INSIDE" width="693.0" />
+                                                                <DatePicker fx:id="cancel_end_date_picker" layoutX="401.0" layoutY="24.0" prefHeight="27.0" prefWidth="158.0" promptText="Конечная дата" />
+                                                                <DatePicker fx:id="cancel_start_date_picker" layoutX="210.0" layoutY="24.0" prefHeight="27.0" prefWidth="167.0" promptText="Начальная дата" />
+                                                                <Label layoutX="39.0" layoutY="18.0" prefHeight="39.0" prefWidth="93.0" text="Списания">
+                                                                    <font>
+                                                                        <Font name="Tahoma Bold" size="18.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label fx:id="cancel_amount" layoutX="140.0" layoutY="18.0" prefHeight="39.0" prefWidth="32.0" text="99">
+                                                                    <font>
+                                                                        <Font name="Tahoma" size="18.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <TableView fx:id="cancel_table" layoutX="14.0" layoutY="74.0" prefHeight="351.0" prefWidth="690.0">
+                                                                    <columns>
+                                                                        <TableColumn fx:id="cancel_date_column" prefWidth="96.00003433227539" text="Дата" />
+                                                                        <TableColumn fx:id="cancel_product_column" prefWidth="158.83629608154297" text="Товар" />
+                                                                        <TableColumn fx:id="cancel_sum_column" prefWidth="90.76361083984375" text="Кол-во" />
+                                                                        <TableColumn fx:id="cancel_user_column" prefWidth="119.56369018554688" text="Сотрудник" />
+                                                                        <TableColumn fx:id="cancel_description_column" prefWidth="160.5819091796875" text="Причина" />
+                                                                        <TableColumn fx:id="cancel_change_column" prefWidth="61.963623046875" />
+                                                                    </columns>
+                                                                </TableView>
+                                                                <Label layoutX="386.0" layoutY="18.0" prefHeight="39.0" prefWidth="11.0" text="-">
+                                                                    <font>
+                                                                        <Font name="Tahoma Bold" size="18.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Button fx:id="cancel_add_btn" layoutX="592.0" layoutY="24.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" text="Добавить" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </content>
+                                                </ScrollPane>
+                                            </content>
+                                        </Tab>
+                                    </tabs>
+                                </TabPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="admin_statistics_main_tab" text="Статистика">
+                    <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <TabPane fx:id="statistics_tab_pane" minHeight="-Infinity" prefHeight="463.0" prefWidth="800.0" rotateGraphic="true" side="LEFT" stylesheets="/scenes/style/left_vertical_tabs.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="200.0" tabMinHeight="90.0">
+                                <tabs>
+                                    <Tab fx:id="staff_tab" styleClass="horiz-tab-label" text="Штат">
+                                        <content>
+                                            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                                <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="456.0" prefWidth="735.0">
+                                                        <children>
+                                                            <DatePicker fx:id="staff_end_date_picker" layoutX="527.0" layoutY="58.0" promptText="Конечная дата" />
+                                                            <DatePicker fx:id="staff_start_date_picker" layoutX="527.0" layoutY="17.0" promptText="Начальная дата" />
+                                                            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dededeb6" height="79.0" layoutX="14.0" layoutY="12.0" stroke="#00000017" strokeType="INSIDE" width="506.0" />
+                                                            <Label layoutX="22.0" layoutY="18.0" prefHeight="39.0" prefWidth="93.0" text="Сегодня,">
+                                                                <font>
+                                                                    <Font name="Tahoma Bold" size="18.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Label fx:id="staff_current_date_label" layoutX="22.0" layoutY="44.0" prefHeight="39.0" prefWidth="134.0" text="11 августа">
+                                                                <font>
+                                                                    <Font name="Tahoma Bold" size="18.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Label fx:id="staff_income" layoutX="170.0" layoutY="18.0" prefHeight="39.0" prefWidth="162.0" text="9 999,99 ₴">
+                                                                <font>
+                                                                    <Font name="Tahoma Bold" size="18.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Label layoutX="170.0" layoutY="51.0" prefHeight="24.0" prefWidth="119.0" text="выручка">
+                                                                <font>
+                                                                    <Font name="Tahoma" size="14.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Label fx:id="staff_check_amount" layoutX="340.0" layoutY="18.0" prefHeight="39.0" prefWidth="172.0" text="999">
+                                                                <font>
+                                                                    <Font name="Tahoma Bold" size="18.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Label layoutX="340.0" layoutY="51.0" prefHeight="24.0" prefWidth="119.0" text="количество чеков">
+                                                                <font>
+                                                                    <Font name="Tahoma" size="14.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <TableView fx:id="staff_table" layoutX="15.0" layoutY="114.0" prefHeight="327.0" prefWidth="690.0">
+                                                                <columns>
+                                                                    <TableColumn fx:id="staff_name_column" prefWidth="178.0363883972168" text="Сотрудник" />
+                                                                    <TableColumn fx:id="staff_income_column" prefWidth="137.89088439941406" text="Выручка" />
+                                                                    <TableColumn fx:id="staff_profit_column" prefWidth="139.63644409179688" text="Прибыль" />
+                                                                    <TableColumn fx:id="staff_check_amount_column" prefWidth="109.09088134765625" text="Чеки" />
+                                                                    <TableColumn fx:id="staff_average_check_column" prefWidth="130.9091796875" text="Средний чек" />
+                                                                </columns>
+                                                            </TableView>
+                                                        </children>
+                                                    </AnchorPane>
+                                                </content>
+                                            </ScrollPane>
+                                        </content>
+                                    </Tab>
+                                    <Tab fx:id="sales_tab" styleClass="horiz-tab-label" text="Продажи">
+                                        <content>
+                                            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                                <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="720.0">
+                                                        <children>
+                                                            <DatePicker fx:id="sales_end_date_picker" layoutX="527.0" layoutY="58.0" promptText="Конечная дата" />
+                                                            <DatePicker fx:id="sales_start_date_picker" layoutX="527.0" layoutY="17.0" promptText="Начальная дата" />
+                                                            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dededeb6" height="79.0" layoutX="14.0" layoutY="12.0" stroke="#00000017" strokeType="INSIDE" width="506.0" />
+                                                            <Label layoutX="22.0" layoutY="18.0" prefHeight="39.0" prefWidth="93.0" text="Сегодня,">
+                                                                <font>
+                                                                    <Font name="Tahoma Bold" size="18.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Label fx:id="sales_current_date_label" layoutX="22.0" layoutY="44.0" prefHeight="39.0" prefWidth="134.0" text="11 августа">
+                                                                <font>
+                                                                    <Font name="Tahoma Bold" size="18.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Label fx:id="sales_today_income" layoutX="170.0" layoutY="18.0" prefHeight="39.0" prefWidth="162.0" text="9 999,99 ₴">
+                                                                <font>
+                                                                    <Font name="Tahoma Bold" size="18.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Label layoutX="170.0" layoutY="51.0" prefHeight="24.0" prefWidth="119.0" text="выручка">
+                                                                <font>
+                                                                    <Font name="Tahoma" size="14.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Label fx:id="sales_today_profit" layoutX="340.0" layoutY="18.0" prefHeight="39.0" prefWidth="172.0" text="9 999,99 ₴">
+                                                                <font>
+                                                                    <Font name="Tahoma Bold" size="18.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Label layoutX="340.0" layoutY="51.0" prefHeight="24.0" prefWidth="119.0" text="прибыль">
+                                                                <font>
+                                                                    <Font name="Tahoma" size="14.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <LineChart fx:id="sales_income_chart" layoutX="14.0" layoutY="105.0" prefHeight="254.0" prefWidth="696.0" title="Выручка">
+                                                                <xAxis>
+                                                                    <CategoryAxis fx:id="income_date_axis" prefHeight="26.0" prefWidth="640.0" side="BOTTOM" />
+                                                                </xAxis>
+                                                                <yAxis>
+                                                                    <NumberAxis fx:id="income_amount_axis" side="LEFT" />
+                                                                </yAxis>
+                                                            </LineChart>
+                                                            <BarChart fx:id="sales_indome_by_day_chart" layoutX="13.0" layoutY="370.0" prefHeight="202.0" prefWidth="695.0" title="По дням недели">
+                                                                <xAxis>
+                                                                    <CategoryAxis fx:id="income_by_day_days_axis" side="BOTTOM" />
+                                                                </xAxis>
+                                                                <yAxis>
+                                                                    <NumberAxis fx:id="income_by_day_amount_axis" side="LEFT" />
+                                                                </yAxis>
+                                                            </BarChart>
+                                                        </children>
+                                                    </AnchorPane>
+                                                </content>
+                                            </ScrollPane>
+                                        </content>
+                                    </Tab>
+                                    <Tab fx:id="payments_tab" styleClass="horiz-tab-label" text="Оплаты">
+                                        <content>
+                                            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                                <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="458.0" prefWidth="734.0">
+                                                        <children>
+                                                            <DatePicker fx:id="payments_end_date_picker" layoutX="527.0" layoutY="58.0" promptText="Конечная дата" />
+                                                            <DatePicker fx:id="payments_start_date_picker" layoutX="527.0" layoutY="17.0" promptText="Начальная дата" />
+                                                            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dededeb6" height="79.0" layoutX="14.0" layoutY="12.0" stroke="#00000017" strokeType="INSIDE" width="506.0" />
+                                                            <Label layoutX="22.0" layoutY="18.0" prefHeight="39.0" prefWidth="93.0" text="Сегодня,">
+                                                                <font>
+                                                                    <Font name="Tahoma Bold" size="18.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Label fx:id="payments_current_date_label" layoutX="22.0" layoutY="44.0" prefHeight="39.0" prefWidth="134.0" text="11 августа">
+                                                                <font>
+                                                                    <Font name="Tahoma Bold" size="18.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Label fx:id="payments_income_cash" layoutX="170.0" layoutY="18.0" prefHeight="39.0" prefWidth="162.0" text="9 999,99 ₴">
+                                                                <font>
+                                                                    <Font name="Tahoma Bold" size="18.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Label layoutX="170.0" layoutY="51.0" prefHeight="24.0" prefWidth="119.0" text="наличными">
+                                                                <font>
+                                                                    <Font name="Tahoma" size="14.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Label fx:id="payments_income_card" layoutX="340.0" layoutY="18.0" prefHeight="39.0" prefWidth="172.0" text="9 999,99 ₴">
+                                                                <font>
+                                                                    <Font name="Tahoma Bold" size="18.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <Label layoutX="340.0" layoutY="51.0" prefHeight="24.0" prefWidth="119.0" text="картой">
+                                                                <font>
+                                                                    <Font name="Tahoma" size="14.0" />
+                                                                </font>
+                                                            </Label>
+                                                            <TableView fx:id="payments_table" layoutX="15.0" layoutY="114.0" prefHeight="334.0" prefWidth="690.0">
+                                                                <columns>
+                                                                    <TableColumn fx:id="payment_date_column" prefWidth="121.30907821655273" text="Дата" />
+                                                                    <TableColumn fx:id="payment_amount_column" prefWidth="139.6363525390625" text="Количество чеков" />
+                                                                    <TableColumn fx:id="payment_cash_column" prefWidth="140.0" text="Наличными" />
+                                                                    <TableColumn fx:id="payment_card_column" prefWidth="140.0" text="Картой" />
+                                                                    <TableColumn fx:id="payment_total_column" prefWidth="150.0" text="Всего" />
+                                                                </columns>
+                                                            </TableView>
+                                                        </children>
+                                                    </AnchorPane>
+                                                </content>
+                                            </ScrollPane>
+                                        </content>
+                                    </Tab>
+                                </tabs>
+                            </TabPane>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+            <padding>
+                <Insets left="9.0" />
+            </padding>
+        </TabPane>
+      <Label fx:id="logout_label_btn" layoutX="760.0" layoutY="3.0" onMouseClicked="#logout" text="&lt;--">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+
+    </children>
+    <stylesheets>
+        <URL value="@style/left_vertical_tabs.css" />
+    </stylesheets>
+</AnchorPane>
