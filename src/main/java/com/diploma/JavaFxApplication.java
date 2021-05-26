@@ -32,6 +32,7 @@ public class JavaFxApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        stage.setResizable(false);
         this.context.publishEvent(new StageReadyEvent(stage));
     }
 

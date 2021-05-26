@@ -62,6 +62,7 @@ public class LoginController {
 
     @FXML
     public void initialize() {
+
         this.pin_0_btn.setOnAction(pinBtnHandler);
         this.pin_1_btn.setOnAction(pinBtnHandler);
         this.pin_2_btn.setOnAction(pinBtnHandler);

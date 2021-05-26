@@ -2,12 +2,14 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.diploma.service.controller.LoginController">
@@ -93,5 +95,11 @@
             </Button>
          </children>
       </GridPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a5a5a5" height="500.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="500.0" />
+      <Label alignment="CENTER" layoutX="132.0" layoutY="207.0" prefHeight="84.0" prefWidth="235.0" text="Simple Keeper">
+         <font>
+            <Font name="Tahoma Bold" size="27.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
