@@ -82,9 +82,10 @@ public class SaleController {
     }
 
     private void initSale() {
-        if (saleDao.findOneById(saleDao.findLastId()) != null)
-            if (!saleDao.findOneById(saleDao.findLastId()).getPaymentMethod().name()
-                        .equals(PaymentMethod.OPEN.name())) {
+
+            if (saleDao.findOneById(saleDao.findLastId()) == null || !saleDao.findOneById(saleDao.findLastId())
+                                                                             .getPaymentMethod().name()
+                                                                             .equals(PaymentMethod.OPEN.name())) {
                 currentSale = new SaleEntity();
                 long newId = 1L;
                 if (saleDao.findLastId() != null)

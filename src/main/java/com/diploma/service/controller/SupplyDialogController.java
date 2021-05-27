@@ -66,7 +66,7 @@ public class SupplyDialogController {
             if (!product.getSelectionModel().isEmpty()) {
                 RetailProductEntity oneByName = retailProductDao
                         .findOneByName(product.getSelectionModel().getSelectedItem());
-                cost.setText(String.valueOf(Double.parseDouble(t1) * oneByName.getCost()));
+                cost.setText(String.valueOf(Double.parseDouble(t1) * oneByName.getRawCost()));
             }
         }));
         save_btn.setOnAction(saveEvent -> {
@@ -109,7 +109,7 @@ public class SupplyDialogController {
             if (!product.getSelectionModel().isEmpty()) {
                 RetailProductEntity oneByName = retailProductDao
                         .findOneByName(product.getSelectionModel().getSelectedItem());
-                cost.setText(String.valueOf(Double.parseDouble(t1) * oneByName.getCost()));
+                cost.setText(String.valueOf(Double.parseDouble(t1) * oneByName.getRawCost()));
             }
         }));
         save_btn.setOnAction(saveEvent -> {

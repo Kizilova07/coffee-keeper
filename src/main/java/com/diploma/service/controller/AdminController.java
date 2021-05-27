@@ -133,8 +133,21 @@ public class AdminController {
     public TableColumn<PaymentDto, Double> payment_total_column;
     public Label logout_label_btn;
 
+    public Tab expences_tab;
+    public DatePicker expence_end_date_picker;
+    public DatePicker expence_start_date_picker;
+    public Label expence_current_date_label;
+    public Label sales_today_expence;
+    public LineChart<String, Double> sales_expence_chart;
+    public CategoryAxis expence_date_axis;
+    public NumberAxis expence_amount_axis;
+    public BarChart<String, Double> sales_expence_by_day_chart;
+    public CategoryAxis expence_by_day_days_axis;
+    public NumberAxis expence_by_day_amount_axis;
+
 
     private final ApplicationContext applicationContext;
+
     private SupplierDao supplierDao;
     private SupplyDao supplyDao;
     private RemainsDao remainsDao;
@@ -196,6 +209,150 @@ public class AdminController {
         initPayments();
         initStaff();
         initIncome();
+        initExpense();
+    }
+
+    private void initExpense() {
+        sales_expence_by_day_chart.getData().clear();
+        sales_expence_chart.getData().clear();
+        if (expence_start_date_picker.getValue() == null && expence_end_date_picker.getValue() == null) {
+            fillExpenseByDayBarChart();
+            fillExpenseLineChart();
+        } else if (expence_start_date_picker.getValue() != null && expence_end_date_picker.getValue() != null) {
+            fillExpenseByDayBarChart(expence_start_date_picker.getValue().toString(),
+                                     expence_end_date_picker.getValue().toString());
+            fillExpenseLineChart(expence_start_date_picker.getValue().toString(),
+                                 expence_end_date_picker.getValue().toString());
+        } else if (expence_start_date_picker.getValue() == null && expence_end_date_picker.getValue() != null) {
+            fillExpenseByDayBarChart("1970-01-01", expence_end_date_picker.getValue().toString());
+            fillExpenseLineChart("1970-01-01", expence_end_date_picker.getValue().toString());
+        } else {
+            fillExpenseByDayBarChart(expence_start_date_picker.getValue().toString(),
+                                    formatter.format(new Date()));
+            fillExpenseLineChart(expence_start_date_picker.getValue().toString(),
+                                formatter.format(new Date()));
+        }
+        expence_start_date_picker.valueProperty().addListener(((observableValue, localDate, t1) -> {
+            initExpense();
+        }));
+        expence_end_date_picker.valueProperty().addListener(((observableValue, localDate, t1) -> {
+            initExpense();
+        }));
+        sales_current_date_label.setText(
+                currentDate.get(Calendar.DAY_OF_MONTH) + " " + currentDate.getDisplayName(Calendar.MONTH,
+                                                                                          Calendar.LONG,
+                                                                                          new Locale("ru")));
+        sales_today_expence.setText(getCurrentExpense() + " ₴");
+    }
+
+    private void fillExpenseByDayBarChart(String startDate, String endDate) {
+
+        expence_by_day_amount_axis.setLabel("Расходы");
+        XYChart.Series<String, Double> series = new XYChart.Series<>();
+        sales_expence_by_day_chart.setLegendVisible(false);
+        List<SupplyEntity> allSupplies = supplyDao.findAllInPeriod(startDate,endDate);
+        List<String> days = new ArrayList<>();
+        days.add("понедельник");
+        days.add("вторник");
+        days.add("среда");
+        days.add("четверг");
+        days.add("пятница");
+        days.add("суббота");
+        days.add("воскресенье");
+        try {
+            Calendar calendar = Calendar.getInstance(java.util.TimeZone.getTimeZone("Europe/Moscow"));
+            for (String date : days) {
+                double expense = 0.0;
+                for (SupplyEntity supply : allSupplies) {
+                    Date parse = formatter.parse(supply.getDate());
+                    calendar.setTime(parse);
+                    String ru = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, new Locale("ru"));
+                    if (date.equals(ru)) {
+                        expense += (supply.getAmount() * supply.getRetailProductEntity().getRawCost());
+                    }
+                }
+                series.getData().add(new XYChart.Data<>(date, expense));
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        sales_expence_by_day_chart.getData().add(series);
+    }
+
+    private void fillExpenseLineChart(String startDate, String endDate) {
+
+        expence_amount_axis.setLabel("Расходы");
+        XYChart.Series<String, Double> series = new XYChart.Series<>();
+        sales_expence_chart.setLegendVisible(false);
+        List<SupplyEntity> allSupplies = supplyDao.findAllInPeriod(startDate, endDate);
+        Set<String> dates = new TreeSet<>();
+        for (SupplyEntity supplyEntity : allSupplies) {
+            dates.add(supplyEntity.getDate());
+        }
+        for (String date : dates) {
+            double expense = 0.0;
+            for (SupplyEntity supply : allSupplies) {
+                if (date.equals(supply.getDate())) {
+                    expense += (supply.getAmount() * supply.getRetailProductEntity().getRawCost());
+                }
+            }
+            series.getData().add(new XYChart.Data<>(date, expense));
+        }
+        sales_expence_chart.getData().add(series);
+    }
+
+    private void fillExpenseByDayBarChart() {
+        expence_by_day_amount_axis.setLabel("Расходы");
+        XYChart.Series<String, Double> series = new XYChart.Series<>();
+        sales_expence_by_day_chart.setLegendVisible(false);
+        List<SupplyEntity> allSupplies = supplyDao.findAll();
+        List<String> days = new ArrayList<>();
+        days.add("понедельник");
+        days.add("вторник");
+        days.add("среда");
+        days.add("четверг");
+        days.add("пятница");
+        days.add("суббота");
+        days.add("воскресенье");
+        try {
+            Calendar calendar = Calendar.getInstance(java.util.TimeZone.getTimeZone("Europe/Moscow"));
+            for (String date : days) {
+                double expense = 0.0;
+                for (SupplyEntity supply : allSupplies) {
+                    Date parse = formatter.parse(supply.getDate());
+                    calendar.setTime(parse);
+                    String ru = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, new Locale("ru"));
+                    if (date.equals(ru)) {
+                        expense += (supply.getAmount() * supply.getRetailProductEntity().getRawCost());
+                    }
+                }
+                series.getData().add(new XYChart.Data<>(date, expense));
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        sales_expence_by_day_chart.getData().add(series);
+    }
+
+    private void fillExpenseLineChart() {
+        expence_amount_axis.setLabel("Расходы");
+        XYChart.Series<String, Double> series = new XYChart.Series<>();
+        sales_expence_chart.setLegendVisible(false);
+        List<SupplyEntity> allSupplies = supplyDao.findAll();
+        Set<String> dates = new TreeSet<>();
+        for (SupplyEntity supplyEntity : allSupplies) {
+            dates.add(supplyEntity.getDate());
+        }
+        for (String date : dates) {
+            double expense = 0.0;
+            for (SupplyEntity supply : allSupplies) {
+                if (date.equals(supply.getDate())) {
+                    expense += (supply.getAmount() * supply.getRetailProductEntity().getRawCost());
+                }
+            }
+            series.getData().add(new XYChart.Data<>(date, expense));
+        }
+        sales_expence_chart.getData().add(series);
     }
 
     private void initIncome() {
@@ -548,10 +705,7 @@ public class AdminController {
                     } catch (IOException e) {
                         e.printStackTrace();
                     } finally {
-                        cancelTableData.clear();
-                        remainsTableData.clear();
-                        initCancel();
-                        initRemains();
+                        initialize();
                     }
                 });
             }
@@ -577,10 +731,7 @@ public class AdminController {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                cancelTableData.clear();
-                remainsTableData.clear();
-                initCancel();
-                initRemains();
+                initialize();
             }
         });
         cancel_amount.setText(String.valueOf(cancelTableData.size()));
@@ -691,10 +842,7 @@ public class AdminController {
                     } catch (IOException e) {
                         e.printStackTrace();
                     } finally {
-                        suppliesTableData.clear();
-                        remainsTableData.clear();
-                        initSupplies();
-                        initRemains();
+                        initialize();
                     }
                 });
             }
@@ -720,10 +868,7 @@ public class AdminController {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                suppliesTableData.clear();
-                remainsTableData.clear();
-                initSupplies();
-                initRemains();
+                initialize();
             }
         });
         supplies_amount.setText(String.valueOf(suppliesTableData.size()));
@@ -793,8 +938,7 @@ public class AdminController {
                     } catch (IOException e) {
                         e.printStackTrace();
                     } finally {
-                        rawProductTableData.clear();
-                        initRawProducts();
+                        initialize();
                     }
                 });
             }
@@ -820,8 +964,7 @@ public class AdminController {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                rawProductTableData.clear();
-                initRawProducts();
+                initialize();
             }
         });
         raw_amount.setText(String.valueOf(rawProductTableData.size()));
@@ -874,8 +1017,7 @@ public class AdminController {
                     } catch (IOException e) {
                         e.printStackTrace();
                     } finally {
-                        supplierTableData.clear();
-                        initSuppliers();
+                        initialize();
                     }
                 });
             }
@@ -901,8 +1043,7 @@ public class AdminController {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                supplierTableData.clear();
-                initSuppliers();
+                initialize();
             }
         });
         suppliers_amount.setText(String.valueOf(supplierTableData.size()));
@@ -954,11 +1095,19 @@ public class AdminController {
         return res;
     }
 
+    private double getCurrentExpense() {
+        double res = 0.0;
+        for (SupplyEntity supplyEntity : supplyDao.findAllByDate(formatter.format(new Date()))) {
+            res += supplyEntity.getAmount()*supplyEntity.getRetailProductEntity().getRawCost();
+        }
+        return res;
+    }
+
     private double getCurrentSalesAmount() {
         return currentSales.size();
     }
 
-    private void cleanAll(){
+    private void cleanAll() {
         supplierTableData.clear();
         suppliesTableData.clear();
         rawProductTableData.clear();

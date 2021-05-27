@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 public interface SupplyDao extends JpaRepository<SupplyEntity, Long> {
 
+    List<SupplyEntity> findAllByDate(String date);
+
     @Transactional
     @Query("select t from SupplyEntity t " +
             "where (t.date = :date and " +
