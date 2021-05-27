@@ -82,21 +82,23 @@ public class SaleController {
     }
 
     private void initSale() {
-        if (!saleDao.findOneById(saleDao.findLastId()).getPaymentMethod().name().equals(PaymentMethod.OPEN.name())) {
-            currentSale = new SaleEntity();
-            long newId = 1L;
-            if (saleDao.findLastId() != null)
-                newId += saleDao.findLastId();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            currentSale.setId(newId);
-            currentSale.setDate(sdf.format(new Date()));
-            currentSale.setPaymentMethod(PaymentMethod.OPEN);
-            currentSale.setUserEntity(LoginController.getLoggedUser());
-            currentSale.setIncome(0.0);
-            currentSale.setProfit(0.0);
-            saleDao.save(currentSale);
-        } else
-            currentSale = saleDao.findOneById(saleDao.findLastId());
+        if (saleDao.findOneById(saleDao.findLastId()) != null)
+            if (!saleDao.findOneById(saleDao.findLastId()).getPaymentMethod().name()
+                        .equals(PaymentMethod.OPEN.name())) {
+                currentSale = new SaleEntity();
+                long newId = 1L;
+                if (saleDao.findLastId() != null)
+                    newId += saleDao.findLastId();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                currentSale.setId(newId);
+                currentSale.setDate(sdf.format(new Date()));
+                currentSale.setPaymentMethod(PaymentMethod.OPEN);
+                currentSale.setUserEntity(LoginController.getLoggedUser());
+                currentSale.setIncome(0.0);
+                currentSale.setProfit(0.0);
+                saleDao.save(currentSale);
+            } else
+                currentSale = saleDao.findOneById(saleDao.findLastId());
     }
 
     private void initFields() {
@@ -145,7 +147,7 @@ public class SaleController {
     }
 
     @FXML
-    public void logout(){
+    public void logout() {
         try {
             Stage stage = (Stage) pay_btn.getScene().getWindow();
             URL url = loginScene.getURL();
@@ -161,7 +163,7 @@ public class SaleController {
     }
 
     @FXML
-    public void handleMouseClick(MouseEvent event){
+    public void handleMouseClick(MouseEvent event) {
         String[] split = product_list.getSelectionModel().getSelectedItem().split(" ");
         StringBuilder productName = new StringBuilder();
         for (int i = 0; i < split.length - 1; i++) {
@@ -187,10 +189,11 @@ public class SaleController {
     private void initProductList() {
         List<RetailProductEntity> all = productDao.findAll();
         for (RetailProductEntity productEntity : all) {
-            StringBuilder s = new StringBuilder(productEntity.getName() + " \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+            StringBuilder s = new StringBuilder(
+                    productEntity.getName() + " \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
             int i = productEntity.getName().length() / 4;
             for (int i1 = 0; i1 < i; i1++) {
-                s.deleteCharAt(s.length()-1);
+                s.deleteCharAt(s.length() - 1);
             }
             s.append(productEntity.getCost()).append("₴");
             productEntities.add(s.toString());
@@ -274,7 +277,7 @@ public class SaleController {
         return currentSale;
     }
 
-    public static double getTotalSum(){
+    public static double getTotalSum() {
         return totalSum;
     }
 }
