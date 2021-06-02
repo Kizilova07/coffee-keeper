@@ -66,7 +66,7 @@ public class RawProductDialogController {
                                                 .getId());
                 closeDialogStage(saveEvent);
             } else {
-                String toastMsg = "Форма заполнена не корректно!";
+                String toastMsg = "Форма заповнена не корректно!";
                 int toastMsgTime = 1500;
                 int fadeInTime = 300;
                 int fadeOutTime = 300;
@@ -83,7 +83,7 @@ public class RawProductDialogController {
             suppliersList.add(supplierEntity.getName());
         }
         edit_raw_supplier_name.setItems(suppliersList);
-        label.setText("Новый товар");
+        label.setText("Новий товар");
 
         edit_raw_save_btn.setOnAction(saveEvent -> {
             if (isFilled()) {
@@ -97,7 +97,7 @@ public class RawProductDialogController {
                 rawProductDao.save(rawProductEntity);
                 closeDialogStage(saveEvent);
             } else {
-                String toastMsg = "Форма заполнена не корректно!";
+                String toastMsg = "Форма заповнена не корректно!";
                 int toastMsgTime = 1500;
                 int fadeInTime = 300;
                 int fadeOutTime = 300;

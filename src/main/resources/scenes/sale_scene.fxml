@@ -16,7 +16,7 @@
    <children>
       <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="34.0" layoutX="340.0" layoutY="48.0" stroke="#9d9d9d" strokeType="INSIDE" strokeWidth="0.5" width="461.0" />
       <Rectangle arcHeight="3.0" arcWidth="5.0" fill="#5f5f5f" height="58.0" layoutX="-5.0" layoutY="-9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="808.0" />
-      <Label fx:id="user_name_label" alignment="CENTER_RIGHT" layoutX="674.0" layoutY="2.0" prefHeight="40.0" prefWidth="111.0" text="UserName" textFill="#ebebeb" onMouseClicked="#logout">
+      <Label fx:id="user_name_label" alignment="CENTER_RIGHT" layoutX="674.0" layoutY="2.0" onMouseClicked="#logout" prefHeight="40.0" prefWidth="111.0" text="UserName" textFill="#ebebeb">
          <font>
             <Font name="Tahoma Bold" size="17.0" />
          </font>
@@ -28,11 +28,11 @@
       </Label>
       <TableView fx:id="check_table" layoutY="49.0" prefHeight="387.0" prefWidth="342.0">
         <columns>
-          <TableColumn fx:id="product_name_column" prefWidth="134.40002471208572" text="Наименование" />
-          <TableColumn fx:id="amount_column" prefWidth="53.236328125" text="Кол-во" />
-            <TableColumn fx:id="cost_column" prefWidth="54.10906982421875" text="Цена" />
-            <TableColumn fx:id="sum_column" prefWidth="58.47276306152344" text="Итого" />
-            <TableColumn fx:id="delete_col" prefWidth="39.2726837813957" />
+          <TableColumn fx:id="product_name_column" prefWidth="134.40002471208572" text="Назва" />
+          <TableColumn fx:id="amount_column" prefWidth="53.236328125" text="Кіл-ть" />
+            <TableColumn fx:id="cost_column" prefWidth="54.10906982421875" text="Ціна" />
+            <TableColumn fx:id="sum_column" prefWidth="60.21821594238281" text="Взагалом" />
+            <TableColumn fx:id="delete_col" prefWidth="38.39996337890625" />
         </columns>
       </TableView>
       <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="66.0" layoutX="-7.0" layoutY="434.0" stroke="#9d9d9d" strokeType="INSIDE" strokeWidth="0.5" width="350.0" />
@@ -41,15 +41,15 @@
             <Font name="Tahoma Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="432.0" prefHeight="34.0" prefWidth="118.0" text="К оплате" textAlignment="CENTER">
+      <Label layoutX="14.0" layoutY="432.0" prefHeight="34.0" prefWidth="118.0" text="До сплати" textAlignment="CENTER">
          <font>
             <Font name="Tahoma Bold" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="pay_btn" layoutX="253.0" layoutY="464.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="84.0" text="Оплатить" />
+      <Button fx:id="pay_btn" layoutX="253.0" layoutY="464.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="84.0" text="Сплатити" />
       <Button fx:id="print_btn" layoutX="168.0" layoutY="464.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="76.0" text="Печать" />
-      <ListView fx:id="product_list" layoutX="342.0" layoutY="78.0" prefHeight="422.0" prefWidth="460.0" onMouseClicked="#handleMouseClick"/>
-      <Label layoutX="350.0" layoutY="49.0" prefHeight="27.0" prefWidth="120.0" text="Все товары" textAlignment="CENTER">
+      <ListView fx:id="product_list" layoutX="342.0" layoutY="78.0" onMouseClicked="#handleMouseClick" prefHeight="422.0" prefWidth="460.0" />
+      <Label layoutX="350.0" layoutY="49.0" prefHeight="27.0" prefWidth="120.0" text="Усі товари" textAlignment="CENTER">
          <font>
             <Font name="Tahoma Bold" size="13.0" />
          </font>

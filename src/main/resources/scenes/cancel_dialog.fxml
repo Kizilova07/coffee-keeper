@@ -15,7 +15,7 @@
     <children>
         <VBox alignment="CENTER" layoutX="131.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
             <children>
-                <Text fx:id="label" strokeType="OUTSIDE" strokeWidth="0.0" text="Информация о списании" textAlignment="CENTER" wrappingWidth="148.86732482910156">
+                <Text fx:id="label" strokeType="OUTSIDE" strokeWidth="0.0" text="Інформація про зписання" textAlignment="CENTER" wrappingWidth="148.86732482910156">
                <VBox.margin>
                   <Insets />
                </VBox.margin></Text>
@@ -31,7 +31,7 @@
             <HBox alignment="CENTER" layoutX="10.0" layoutY="100.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Дата" />
-                  <DatePicker fx:id="date" prefHeight="27.0" prefWidth="249.0" promptText="Дата списания" />
+                  <DatePicker fx:id="date" prefHeight="27.0" prefWidth="249.0" promptText="Дата зписання" />
                </children>
                <padding>
                   <Insets right="30.0" />
@@ -39,8 +39,8 @@
             </HBox>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Кол-во" />
-                        <TextField fx:id="amount" promptText="Кол-во" HBox.hgrow="ALWAYS" />
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Кількість" />
+                        <TextField fx:id="amount" promptText="Кількість (шт.)" HBox.hgrow="ALWAYS" />
                     </children>
                     <padding>
                         <Insets right="30.0" />
@@ -48,8 +48,8 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Комментарий" />
-                        <TextField fx:id="comment" promptText="Комментарий" HBox.hgrow="ALWAYS" />
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Комментар" />
+                        <TextField fx:id="comment" promptText="Комментар" HBox.hgrow="ALWAYS" />
                     </children>
                     <padding>
                         <Insets right="30.0" />
@@ -57,7 +57,7 @@
                 </HBox>
                 <HBox alignment="CENTER_RIGHT">
                     <children>
-                        <Button fx:id="save_btn" mnemonicParsing="false" text="Сохранить" />
+                        <Button fx:id="save_btn" mnemonicParsing="false" text="Зберегти" />
                     </children>
                     <opaqueInsets>
                         <Insets />

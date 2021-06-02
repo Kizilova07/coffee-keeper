@@ -156,7 +156,7 @@ public class PayController {
                 }
                 moveBack();
             } else {
-                String toastMsg = "Неверно введена оплата!";
+                String toastMsg = "Невірно введена оплата!";
                 int toastMsgTime = 1500;
                 int fadeInTime = 300;
                 int fadeOutTime = 300;

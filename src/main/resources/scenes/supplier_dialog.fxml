@@ -13,11 +13,11 @@
     <children>
         <VBox alignment="CENTER" layoutX="131.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
             <children>
-                <Text fx:id="label" strokeType="OUTSIDE" strokeWidth="0.0" text="Информация о постащике" />
+                <Text fx:id="label" strokeType="OUTSIDE" strokeWidth="0.0" text="Інформація про постачальника" />
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Компания" />
-                        <TextField fx:id="edit_supplier_name" promptText="Название компании поставщика" HBox.hgrow="ALWAYS" />
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Компанія" />
+                        <TextField fx:id="edit_supplier_name" promptText="Назва компанії постачальника" HBox.hgrow="ALWAYS" />
                     </children>
                     <padding>
                         <Insets right="30.0" />
@@ -25,8 +25,8 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Адрес" />
-                        <TextField fx:id="edit_supplier_address" promptText="Адрес компании поставщика" HBox.hgrow="ALWAYS" />
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Адреса" />
+                        <TextField fx:id="edit_supplier_address" promptText="Адреса компанії постачальника" HBox.hgrow="ALWAYS" />
                     </children>
                     <padding>
                         <Insets right="30.0" />
@@ -43,7 +43,7 @@
                 </HBox>
                 <HBox alignment="CENTER_RIGHT">
                     <children>
-                        <Button fx:id="edit_supplier_save_btn" mnemonicParsing="false" text="Сохранить" />
+                        <Button fx:id="edit_supplier_save_btn" mnemonicParsing="false" text="Зберегти" />
                     </children>
                     <opaqueInsets>
                         <Insets />

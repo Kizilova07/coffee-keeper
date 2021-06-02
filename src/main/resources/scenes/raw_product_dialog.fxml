@@ -14,14 +14,14 @@
     <children>
         <VBox alignment="CENTER" layoutX="131.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
             <children>
-                <Text fx:id="label" strokeType="OUTSIDE" strokeWidth="0.0" text="Информация о товаре" textAlignment="CENTER" wrappingWidth="148.86732482910156">
+                <Text fx:id="label" strokeType="OUTSIDE" strokeWidth="0.0" text="Інформація про товар" textAlignment="CENTER" wrappingWidth="148.86732482910156">
                <VBox.margin>
                   <Insets />
                </VBox.margin></Text>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Наименование" />
-                  <TextField fx:id="edit_raw_product_name" promptText="Наименование товара" HBox.hgrow="ALWAYS" />
+                  <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Назва" />
+                  <TextField fx:id="edit_raw_product_name" promptText="Назва товару" HBox.hgrow="ALWAYS" />
                </children>
                <padding>
                   <Insets right="30.0" />
@@ -29,8 +29,8 @@
             </HBox>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Цена" />
-                        <TextField fx:id="edit_prod_cost" promptText="Цена товара" HBox.hgrow="ALWAYS" />
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Ціна" />
+                        <TextField fx:id="edit_prod_cost" promptText="Ціна товару (₴)" HBox.hgrow="ALWAYS" />
                     </children>
                     <padding>
                         <Insets right="30.0" />
@@ -38,8 +38,8 @@
                 </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="105.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Себестоимость" />
-                  <TextField fx:id="edit_raw_cost" promptText="Себестоимость товара" HBox.hgrow="ALWAYS" />
+                  <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Собівартість" />
+                  <TextField fx:id="edit_raw_cost" promptText="Собівартість товару (₴)" HBox.hgrow="ALWAYS" />
                </children>
                <padding>
                   <Insets right="30.0" />
@@ -47,8 +47,8 @@
             </HBox>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Описание" />
-                        <TextField fx:id="edit_raw_description" promptText="Описание товара" HBox.hgrow="ALWAYS" />
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Опис" />
+                        <TextField fx:id="edit_raw_description" promptText="Опис товару" HBox.hgrow="ALWAYS" />
                     </children>
                     <padding>
                         <Insets right="30.0" />
@@ -56,7 +56,7 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Поставщик" />
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Постачальник" />
                   <ChoiceBox fx:id="edit_raw_supplier_name" prefHeight="27.0" prefWidth="248.0" />
                     </children>
                     <padding>
@@ -65,7 +65,7 @@
                 </HBox>
                 <HBox alignment="CENTER_RIGHT">
                     <children>
-                        <Button fx:id="edit_raw_save_btn" mnemonicParsing="false" text="Сохранить" />
+                        <Button fx:id="edit_raw_save_btn" mnemonicParsing="false" text="Зберегти" />
                     </children>
                     <opaqueInsets>
                         <Insets />

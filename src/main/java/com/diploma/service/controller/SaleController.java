@@ -206,13 +206,13 @@ public class SaleController {
         try {
             PrintWriter writer;
             writer = new PrintWriter(file);
-            writer.println("Наименование\t\t\t\tКол-во\tЦена\tИтого");
+            writer.println("Назва\t\t\t\tКіль-ть\tЦіна\tВзагалом");
             for (CheckDto checkDto : content) {
                 String data = checkDto.getProductName() + "\t\t\t\t" + checkDto.getAmount() + "\t" + checkDto
                         .getCost() + "\t" + checkDto.getSum();
                 writer.println(data);
             }
-            writer.println("Итого: " + total_cost_label.getText());
+            writer.println("Взагалом: " + total_cost_label.getText());
             writer.close();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -265,7 +265,7 @@ public class SaleController {
         for (SaleProductEntity saleProductEntity : saleProductDao.findAllBySaleId(saleId)) {
             Button button = new Button("-");
             checkTableData.add(new CheckDto(saleProductEntity.getSaleRetailProductEntity().getName(),
-                                            saleProductEntity.getAmount().toString(),
+                                            saleProductEntity.getAmount().toString()+" шт.",
                                             saleProductEntity.getSaleRetailProductEntity().getCost().toString(),
                                             String.valueOf(saleProductEntity.getAmount() * saleProductEntity
                                                     .getSaleRetailProductEntity().getCost()), button));

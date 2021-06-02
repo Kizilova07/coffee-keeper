@@ -5,26 +5,26 @@ import javafx.beans.property.*;
 public class PaymentDto {
 
     private StringProperty date;
-    private IntegerProperty amount;
-    private DoubleProperty cashSum;
-    private DoubleProperty cardSum;
-    private DoubleProperty totalSum;
+    private StringProperty amount;
+    private StringProperty cashSum;
+    private StringProperty cardSum;
+    private StringProperty totalSum;
 
-    public PaymentDto(String date, Integer amount, Double cashSum,
-                      Double cardSum, Double totalSum) {
+    public PaymentDto(String date, String amount, String cashSum,
+                      String cardSum, String totalSum) {
         this.date = new SimpleStringProperty(date);
-        this.amount = new SimpleIntegerProperty(amount);
-        this.cashSum = new SimpleDoubleProperty(cashSum);
-        this.cardSum = new SimpleDoubleProperty(cardSum);
-        this.totalSum = new SimpleDoubleProperty(totalSum);
+        this.amount = new SimpleStringProperty(amount);
+        this.cashSum = new SimpleStringProperty(cashSum);
+        this.cardSum = new SimpleStringProperty(cardSum);
+        this.totalSum = new SimpleStringProperty(totalSum);
     }
 
     public PaymentDto(String date){
         this.date = new SimpleStringProperty(date);
-        this.amount = new SimpleIntegerProperty(0);
-        this.cashSum = new SimpleDoubleProperty(0);
-        this.cardSum = new SimpleDoubleProperty(0);
-        this.totalSum = new SimpleDoubleProperty(0);
+        this.amount = new SimpleStringProperty(String.valueOf(0));
+        this.cashSum = new SimpleStringProperty(String.valueOf(0));
+        this.cardSum = new SimpleStringProperty(String.valueOf(0));
+        this.totalSum = new SimpleStringProperty(String.valueOf(0));
     }
 
     public String getDate() {
@@ -39,51 +39,51 @@ public class PaymentDto {
         this.date.set(date);
     }
 
-    public int getAmount() {
+    public String getAmount() {
         return amount.get();
     }
 
-    public IntegerProperty amountProperty() {
+    public StringProperty amountProperty() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount.set(amount);
     }
 
-    public double getCashSum() {
+    public String getCashSum() {
         return cashSum.get();
     }
 
-    public DoubleProperty cashSumProperty() {
+    public StringProperty cashSumProperty() {
         return cashSum;
     }
 
-    public void setCashSum(double cashSum) {
+    public void setCashSum(String cashSum) {
         this.cashSum.set(cashSum);
     }
 
-    public double getCardSum() {
+    public String getCardSum() {
         return cardSum.get();
     }
 
-    public DoubleProperty cardSumProperty() {
+    public StringProperty cardSumProperty() {
         return cardSum;
     }
 
-    public void setCardSum(double cardSum) {
+    public void setCardSum(String cardSum) {
         this.cardSum.set(cardSum);
     }
 
-    public double getTotalSum() {
+    public String getTotalSum() {
         return totalSum.get();
     }
 
-    public DoubleProperty totalSumProperty() {
+    public StringProperty totalSumProperty() {
         return totalSum;
     }
 
-    public void setTotalSum(double totalSum) {
+    public void setTotalSum(String totalSum) {
         this.totalSum.set(totalSum);
     }
 }

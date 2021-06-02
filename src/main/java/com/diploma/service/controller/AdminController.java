@@ -101,10 +101,10 @@ public class AdminController {
     public Label staff_check_amount;
     public TableView<StaffDto> staff_table;
     public TableColumn<StaffDto, String> staff_name_column;
-    public TableColumn<StaffDto, Double> staff_income_column;
-    public TableColumn<StaffDto, Double> staff_profit_column;
-    public TableColumn<StaffDto, Integer> staff_check_amount_column;
-    public TableColumn<StaffDto, Double> staff_average_check_column;
+    public TableColumn<StaffDto, String> staff_income_column;
+    public TableColumn<StaffDto, String> staff_profit_column;
+    public TableColumn<StaffDto, String> staff_check_amount_column;
+    public TableColumn<StaffDto, String> staff_average_check_column;
 
     public Tab sales_tab;
     public DatePicker sales_end_date_picker;
@@ -127,10 +127,10 @@ public class AdminController {
     public Label payments_income_card;
     public TableView<PaymentDto> payments_table;
     public TableColumn<PaymentDto, String> payment_date_column;
-    public TableColumn<PaymentDto, Integer> payment_amount_column;
-    public TableColumn<PaymentDto, Double> payment_cash_column;
-    public TableColumn<PaymentDto, Double> payment_card_column;
-    public TableColumn<PaymentDto, Double> payment_total_column;
+    public TableColumn<PaymentDto, String> payment_amount_column;
+    public TableColumn<PaymentDto, String> payment_cash_column;
+    public TableColumn<PaymentDto, String> payment_card_column;
+    public TableColumn<PaymentDto, String> payment_total_column;
     public Label logout_label_btn;
 
     public Tab expences_tab;
@@ -228,9 +228,9 @@ public class AdminController {
             fillExpenseLineChart("1970-01-01", expence_end_date_picker.getValue().toString());
         } else {
             fillExpenseByDayBarChart(expence_start_date_picker.getValue().toString(),
-                                    formatter.format(new Date()));
+                                     formatter.format(new Date()));
             fillExpenseLineChart(expence_start_date_picker.getValue().toString(),
-                                formatter.format(new Date()));
+                                 formatter.format(new Date()));
         }
         expence_start_date_picker.valueProperty().addListener(((observableValue, localDate, t1) -> {
             initExpense();
@@ -238,27 +238,27 @@ public class AdminController {
         expence_end_date_picker.valueProperty().addListener(((observableValue, localDate, t1) -> {
             initExpense();
         }));
-        sales_current_date_label.setText(
+        expence_current_date_label.setText(
                 currentDate.get(Calendar.DAY_OF_MONTH) + " " + currentDate.getDisplayName(Calendar.MONTH,
                                                                                           Calendar.LONG,
-                                                                                          new Locale("ru")));
+                                                                                          new Locale("uk")));
         sales_today_expence.setText(getCurrentExpense() + " ₴");
     }
 
     private void fillExpenseByDayBarChart(String startDate, String endDate) {
 
-        expence_by_day_amount_axis.setLabel("Расходы");
+        expence_by_day_amount_axis.setLabel("Витрати");
         XYChart.Series<String, Double> series = new XYChart.Series<>();
         sales_expence_by_day_chart.setLegendVisible(false);
-        List<SupplyEntity> allSupplies = supplyDao.findAllInPeriod(startDate,endDate);
+        List<SupplyEntity> allSupplies = supplyDao.findAllInPeriod(startDate, endDate);
         List<String> days = new ArrayList<>();
-        days.add("понедельник");
-        days.add("вторник");
-        days.add("среда");
-        days.add("четверг");
-        days.add("пятница");
-        days.add("суббота");
-        days.add("воскресенье");
+        days.add("понеділок");
+        days.add("вівторок");
+        days.add("середа");
+        days.add("четвер");
+        days.add("пʼятниця");
+        days.add("субота");
+        days.add("неділя");
         try {
             Calendar calendar = Calendar.getInstance(java.util.TimeZone.getTimeZone("Europe/Moscow"));
             for (String date : days) {
@@ -266,7 +266,7 @@ public class AdminController {
                 for (SupplyEntity supply : allSupplies) {
                     Date parse = formatter.parse(supply.getDate());
                     calendar.setTime(parse);
-                    String ru = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, new Locale("ru"));
+                    String ru = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, new Locale("uk"));
                     if (date.equals(ru)) {
                         expense += (supply.getAmount() * supply.getRetailProductEntity().getRawCost());
                     }
@@ -281,7 +281,7 @@ public class AdminController {
 
     private void fillExpenseLineChart(String startDate, String endDate) {
 
-        expence_amount_axis.setLabel("Расходы");
+        expence_amount_axis.setLabel("Витрати");
         XYChart.Series<String, Double> series = new XYChart.Series<>();
         sales_expence_chart.setLegendVisible(false);
         List<SupplyEntity> allSupplies = supplyDao.findAllInPeriod(startDate, endDate);
@@ -302,18 +302,18 @@ public class AdminController {
     }
 
     private void fillExpenseByDayBarChart() {
-        expence_by_day_amount_axis.setLabel("Расходы");
+        expence_by_day_amount_axis.setLabel("Витрати");
         XYChart.Series<String, Double> series = new XYChart.Series<>();
         sales_expence_by_day_chart.setLegendVisible(false);
         List<SupplyEntity> allSupplies = supplyDao.findAll();
         List<String> days = new ArrayList<>();
-        days.add("понедельник");
-        days.add("вторник");
-        days.add("среда");
-        days.add("четверг");
-        days.add("пятница");
-        days.add("суббота");
-        days.add("воскресенье");
+        days.add("понеділок");
+        days.add("вівторок");
+        days.add("середа");
+        days.add("четвер");
+        days.add("пʼятниця");
+        days.add("субота");
+        days.add("неділя");
         try {
             Calendar calendar = Calendar.getInstance(java.util.TimeZone.getTimeZone("Europe/Moscow"));
             for (String date : days) {
@@ -321,7 +321,7 @@ public class AdminController {
                 for (SupplyEntity supply : allSupplies) {
                     Date parse = formatter.parse(supply.getDate());
                     calendar.setTime(parse);
-                    String ru = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, new Locale("ru"));
+                    String ru = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, new Locale("uk"));
                     if (date.equals(ru)) {
                         expense += (supply.getAmount() * supply.getRetailProductEntity().getRawCost());
                     }
@@ -335,7 +335,7 @@ public class AdminController {
     }
 
     private void fillExpenseLineChart() {
-        expence_amount_axis.setLabel("Расходы");
+        expence_amount_axis.setLabel("Витрати");
         XYChart.Series<String, Double> series = new XYChart.Series<>();
         sales_expence_chart.setLegendVisible(false);
         List<SupplyEntity> allSupplies = supplyDao.findAll();
@@ -382,25 +382,25 @@ public class AdminController {
         sales_current_date_label.setText(
                 currentDate.get(Calendar.DAY_OF_MONTH) + " " + currentDate.getDisplayName(Calendar.MONTH,
                                                                                           Calendar.LONG,
-                                                                                          new Locale("ru")));
+                                                                                          new Locale("uk")));
         sales_today_income.setText(getCurrentIncome() + " ₴");
         sales_today_profit.setText(getCurrentProfit() + " ₴");
     }
 
     private void fillIncomeByDayBarChart(String startDate, String endDate) {
         sales_indome_by_day_chart.getData().clear();
-        income_by_day_amount_axis.setLabel("Выручка");
+        income_by_day_amount_axis.setLabel("Дохід");
         XYChart.Series<String, Double> series = new XYChart.Series<>();
         sales_indome_by_day_chart.setLegendVisible(false);
         List<SaleEntity> allSales = saleDao.findAllInPeriod(startDate, endDate);
         List<String> days = new ArrayList<>();
-        days.add("понедельник");
-        days.add("вторник");
-        days.add("среда");
-        days.add("четверг");
-        days.add("пятница");
-        days.add("суббота");
-        days.add("воскресенье");
+        days.add("понеділок");
+        days.add("вівторок");
+        days.add("середа");
+        days.add("четвер");
+        days.add("пʼятниця");
+        days.add("субота");
+        days.add("неділя");
         try {
             Calendar calendar = Calendar.getInstance(java.util.TimeZone.getTimeZone("Europe/Moscow"));
             for (String date : days) {
@@ -408,7 +408,7 @@ public class AdminController {
                 for (SaleEntity sale : allSales) {
                     Date parse = formatter.parse(sale.getDate());
                     calendar.setTime(parse);
-                    String ru = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, new Locale("ru"));
+                    String ru = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, new Locale("uk"));
                     if (date.equals(ru)) {
                         income += sale.getIncome();
                     }
@@ -423,7 +423,7 @@ public class AdminController {
 
     private void fillIncomeLineChart(String startDate, String endDate) {
         sales_income_chart.getData().clear();
-        income_amount_axis.setLabel("Выручка");
+        income_amount_axis.setLabel("Дохід");
         XYChart.Series<String, Double> series = new XYChart.Series<>();
         sales_income_chart.setLegendVisible(false);
         List<SaleEntity> allSales = saleDao.findAllInPeriod(startDate, endDate);
@@ -444,18 +444,18 @@ public class AdminController {
     }
 
     private void fillIncomeByDayBarChart() {
-        income_by_day_amount_axis.setLabel("Выручка");
+        income_by_day_amount_axis.setLabel("Дохід");
         XYChart.Series<String, Double> series = new XYChart.Series<>();
         sales_indome_by_day_chart.setLegendVisible(false);
         List<SaleEntity> allSales = saleDao.findAll();
         List<String> days = new ArrayList<>();
-        days.add("понедельник");
-        days.add("вторник");
-        days.add("среда");
-        days.add("четверг");
-        days.add("пятница");
-        days.add("суббота");
-        days.add("воскресенье");
+        days.add("понеділок");
+        days.add("вівторок");
+        days.add("середа");
+        days.add("четвер");
+        days.add("пʼятниця");
+        days.add("субота");
+        days.add("неділя");
         try {
             Calendar calendar = Calendar.getInstance(java.util.TimeZone.getTimeZone("Europe/Moscow"));
             for (String date : days) {
@@ -463,7 +463,7 @@ public class AdminController {
                 for (SaleEntity sale : allSales) {
                     Date parse = formatter.parse(sale.getDate());
                     calendar.setTime(parse);
-                    String ru = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, new Locale("ru"));
+                    String ru = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, new Locale("uk"));
                     if (date.equals(ru)) {
                         income += sale.getIncome();
                     }
@@ -477,7 +477,7 @@ public class AdminController {
     }
 
     private void fillIncomeLineChart() {
-        income_amount_axis.setLabel("Выручка");
+        income_amount_axis.setLabel("Дохід");
         XYChart.Series<String, Double> series = new XYChart.Series<>();
         sales_income_chart.setLegendVisible(false);
         List<SaleEntity> allSales = saleDao.findAll();
@@ -517,16 +517,16 @@ public class AdminController {
             initStaff();
         }));
         staff_name_column.setCellValueFactory(new PropertyValueFactory<StaffDto, String>("user"));
-        staff_income_column.setCellValueFactory(new PropertyValueFactory<StaffDto, Double>("income"));
-        staff_profit_column.setCellValueFactory(new PropertyValueFactory<StaffDto, Double>("profit"));
-        staff_check_amount_column.setCellValueFactory(new PropertyValueFactory<StaffDto, Integer>("amount"));
-        staff_average_check_column.setCellValueFactory(new PropertyValueFactory<StaffDto, Double>("averageSale"));
+        staff_income_column.setCellValueFactory(new PropertyValueFactory<StaffDto, String>("income"));
+        staff_profit_column.setCellValueFactory(new PropertyValueFactory<StaffDto, String>("profit"));
+        staff_check_amount_column.setCellValueFactory(new PropertyValueFactory<StaffDto, String>("amount"));
+        staff_average_check_column.setCellValueFactory(new PropertyValueFactory<StaffDto, String>("averageSale"));
         staff_current_date_label.setText(
                 currentDate.get(Calendar.DAY_OF_MONTH) + " " + currentDate.getDisplayName(Calendar.MONTH,
                                                                                           Calendar.LONG,
-                                                                                          new Locale("ru")));
+                                                                                          new Locale("uk")));
         staff_income.setText(getCurrentIncome() + " ₴");
-        staff_check_amount.setText(String.valueOf(getCurrentSalesAmount()));
+        staff_check_amount.setText(String.valueOf(getCurrentSalesAmount()) + " шт.");
     }
 
     private void fillStaffDataList(String startDate, String endDate) {
@@ -537,14 +537,20 @@ public class AdminController {
         }
         for (String user : users) {
             StaffDto staffDto = new StaffDto(user);
+            int amount = 0;
+            double income = 0.0;
+            double profit = 0.0;
             for (SaleEntity sale : allSales) {
                 if (staffDto.getUser().equals(sale.getUserEntity().getName())) {
-                    staffDto.setAmount(staffDto.getAmount() + 1);
-                    staffDto.setIncome(staffDto.getIncome() + sale.getIncome());
-                    staffDto.setProfit(staffDto.getProfit() + sale.getProfit());
+                    amount++;
+                    income += sale.getIncome();
+                    profit += sale.getProfit();
+                    staffDto.setAmount(amount + " шт.");
+                    staffDto.setIncome(income + "₴");
+                    staffDto.setProfit(profit + "₴");
                 }
             }
-            staffDto.setAverageSale(Double.parseDouble(df.format(staffDto.getIncome() / staffDto.getAmount())));
+            staffDto.setAverageSale(df.format(income / amount) + "₴");
             staffTableData.add(staffDto);
         }
         staff_table.setItems(staffTableData);
@@ -558,14 +564,20 @@ public class AdminController {
         }
         for (String user : users) {
             StaffDto staffDto = new StaffDto(user);
+            int amount = 0;
+            double income = 0.0;
+            double profit = 0.0;
             for (SaleEntity sale : allSales) {
                 if (staffDto.getUser().equals(sale.getUserEntity().getName())) {
-                    staffDto.setAmount(staffDto.getAmount() + 1);
-                    staffDto.setIncome(staffDto.getIncome() + sale.getIncome());
-                    staffDto.setProfit(staffDto.getProfit() + sale.getProfit());
+                    amount++;
+                    income += sale.getIncome();
+                    profit += sale.getProfit();
+                    staffDto.setAmount(amount + " шт.");
+                    staffDto.setIncome(income + "₴");
+                    staffDto.setProfit(profit + "₴");
                 }
             }
-            staffDto.setAverageSale(Double.parseDouble(df.format(staffDto.getIncome() / staffDto.getAmount())));
+            staffDto.setAverageSale(df.format(income / amount) + "₴");
             staffTableData.add(staffDto);
         }
         staff_table.setItems(staffTableData);
@@ -591,14 +603,14 @@ public class AdminController {
             initPayments();
         }));
         payment_date_column.setCellValueFactory(new PropertyValueFactory<PaymentDto, String>("date"));
-        payment_amount_column.setCellValueFactory(new PropertyValueFactory<PaymentDto, Integer>("amount"));
-        payment_cash_column.setCellValueFactory(new PropertyValueFactory<PaymentDto, Double>("cashSum"));
-        payment_card_column.setCellValueFactory(new PropertyValueFactory<PaymentDto, Double>("cardSum"));
-        payment_total_column.setCellValueFactory(new PropertyValueFactory<PaymentDto, Double>("totalSum"));
+        payment_amount_column.setCellValueFactory(new PropertyValueFactory<PaymentDto, String>("amount"));
+        payment_cash_column.setCellValueFactory(new PropertyValueFactory<PaymentDto, String>("cashSum"));
+        payment_card_column.setCellValueFactory(new PropertyValueFactory<PaymentDto, String>("cardSum"));
+        payment_total_column.setCellValueFactory(new PropertyValueFactory<PaymentDto, String>("totalSum"));
         payments_current_date_label.setText(
                 currentDate.get(Calendar.DAY_OF_MONTH) + " " + currentDate.getDisplayName(Calendar.MONTH,
                                                                                           Calendar.LONG,
-                                                                                          new Locale("ru")));
+                                                                                          new Locale("uk")));
         payments_income_cash.setText(getCurrentCash() + " ₴");
         payments_income_card.setText(getCurrentCard() + " ₴");
     }
@@ -611,17 +623,23 @@ public class AdminController {
         }
         for (String date : dates) {
             PaymentDto paymentDto = new PaymentDto(date);
+            int amount = 0;
+            double cashSum = 0.0;
+            double cardSum = 0.0;
             for (SaleEntity sale : allSales) {
                 if (paymentDto.getDate().equals(sale.getDate())) {
-                    paymentDto.setAmount(paymentDto.getAmount() + 1);
+                    amount++;
+                    paymentDto.setAmount(amount + " шт.");
                     if (sale.getPaymentMethod().name().equals(PaymentMethod.CASH.name())) {
-                        paymentDto.setCashSum(paymentDto.getCashSum() + sale.getIncome());
+                        cashSum += sale.getIncome();
+                        paymentDto.setCashSum(cashSum + "₴");
                     } else if (sale.getPaymentMethod().name().equals(PaymentMethod.TERMINAL.name())) {
-                        paymentDto.setCardSum(paymentDto.getCardSum() + sale.getIncome());
+                        cardSum += sale.getIncome();
+                        paymentDto.setCardSum(cardSum + "₴");
                     }
                 }
             }
-            paymentDto.setTotalSum(paymentDto.getCardSum() + paymentDto.getCashSum());
+            paymentDto.setTotalSum((cashSum + cardSum) + "₴");
             paymentsTableData.add(paymentDto);
         }
         payments_table.setItems(paymentsTableData);
@@ -635,17 +653,23 @@ public class AdminController {
         }
         for (String date : dates) {
             PaymentDto paymentDto = new PaymentDto(date);
+            int amount = 0;
+            double cashSum = 0.0;
+            double cardSum = 0.0;
             for (SaleEntity sale : allSales) {
                 if (paymentDto.getDate().equals(sale.getDate())) {
-                    paymentDto.setAmount(paymentDto.getAmount() + 1);
+                    amount++;
+                    paymentDto.setAmount(amount + " шт.");
                     if (sale.getPaymentMethod().name().equals(PaymentMethod.CASH.name())) {
-                        paymentDto.setCashSum(paymentDto.getCashSum() + sale.getIncome());
+                        cashSum += sale.getIncome();
+                        paymentDto.setCashSum(cashSum + "₴");
                     } else if (sale.getPaymentMethod().name().equals(PaymentMethod.TERMINAL.name())) {
-                        paymentDto.setCardSum(paymentDto.getCardSum() + sale.getIncome());
+                        cardSum += sale.getIncome();
+                        paymentDto.setCardSum(cardSum + "₴");
                     }
                 }
             }
-            paymentDto.setTotalSum(paymentDto.getCardSum() + paymentDto.getCashSum());
+            paymentDto.setTotalSum((cashSum + cardSum) + "₴");
             paymentsTableData.add(paymentDto);
         }
         payments_table.setItems(paymentsTableData);
@@ -688,10 +712,10 @@ public class AdminController {
                         Parent parent = fxmlLoader.load();
                         int index = getTableRow().getIndex();
                         CancelDto selected = cancel_table.getItems().get(index);
+                        String[] split = selected.getAmount().split(" шт.");
                         CancellationEntity cancellationEntity = cancellationDao.findOne(selected.getDate(),
                                                                                         selected.getComment(),
-                                                                                        Double.parseDouble(
-                                                                                                selected.getAmount()),
+                                                                                        Double.parseDouble(split[0]),
                                                                                         selected.getUser(),
                                                                                         selected.getProductName());
 
@@ -734,7 +758,7 @@ public class AdminController {
                 initialize();
             }
         });
-        cancel_amount.setText(String.valueOf(cancelTableData.size()));
+        cancel_amount.setText(String.valueOf(cancelTableData.size()) + " шт.");
     }
 
     private void fillCancelDataList(String startDate, String endDate) {
@@ -743,7 +767,7 @@ public class AdminController {
             Button button = new Button("Ред.");
             cancelTableData.add(new CancelDto(cancellationEntity.getDate(),
                                               cancellationEntity.getRetailProductEntity().getName(),
-                                              String.valueOf(cancellationEntity.getAmount()),
+                                              String.valueOf(cancellationEntity.getAmount()) + " шт.",
                                               cancellationEntity.getUserEntity().getName(),
                                               cancellationEntity.getComment(),
                                               button));
@@ -759,7 +783,7 @@ public class AdminController {
             Button button = new Button("Ред.");
             cancelTableData.add(new CancelDto(cancellationEntity.getDate(),
                                               cancellationEntity.getRetailProductEntity().getName(),
-                                              String.valueOf(cancellationEntity.getAmount()),
+                                              String.valueOf(cancellationEntity.getAmount()) + " шт.",
                                               cancellationEntity.getUserEntity().getName(),
                                               cancellationEntity.getComment(),
                                               button));
@@ -777,14 +801,14 @@ public class AdminController {
         leaves_current_date_label.setText(
                 currentDate.get(Calendar.DAY_OF_MONTH) + " " + currentDate.getDisplayName(Calendar.MONTH,
                                                                                           Calendar.LONG,
-                                                                                          new Locale("ru")));
+                                                                                          new Locale("uk")));
     }
 
     private void fillRemainsDataList() {
         int id = 1;
         for (RemainsEntity remainsEntity : remainsDao.findAll()) {
             remainsTableData.add(new RemainDto(id, remainsEntity.getRetailProductEntity().getName(),
-                                               remainsEntity.getAmount().toString()));
+                                               remainsEntity.getAmount().toString() + " шт."));
             id++;
         }
         leaves_table.setItems(remainsTableData);
@@ -827,9 +851,10 @@ public class AdminController {
                         Parent parent = fxmlLoader.load();
                         int index = getTableRow().getIndex();
                         SupplyDto selected = supplies_table.getItems().get(index);
+                        String[] split = selected.getCost().split("₴");
                         SupplyEntity supplyEntity = supplyDao.findOne(selected.getDate(),
                                                                       selected.getComment(),
-                                                                      Double.parseDouble(selected.getCost()),
+                                                                      Double.parseDouble(split[0]),
                                                                       selected.getProductName());
 
                         Scene scene = new Scene(parent, 300, 200);
@@ -871,7 +896,7 @@ public class AdminController {
                 initialize();
             }
         });
-        supplies_amount.setText(String.valueOf(suppliesTableData.size()));
+        supplies_amount.setText(String.valueOf(suppliesTableData.size()) + " шт.");
     }
 
     private void fillSuppliesDataList(String startDate, String endDate) {
@@ -882,7 +907,7 @@ public class AdminController {
                                                 supplyEntity.getRetailProductEntity().getRetailSupplier().getName(),
                                                 supplyEntity.getRetailProductEntity().getName(),
                                                 supplyEntity.getDescription(),
-                                                supplyEntity.getCost().toString(),
+                                                supplyEntity.getCost().toString() + "₴",
                                                 button));
 
             id++;
@@ -898,7 +923,7 @@ public class AdminController {
                                                 supplyEntity.getRetailProductEntity().getRetailSupplier().getName(),
                                                 supplyEntity.getRetailProductEntity().getName(),
                                                 supplyEntity.getDescription(),
-                                                supplyEntity.getCost().toString(),
+                                                supplyEntity.getCost().toString() + "₴",
                                                 button));
 
             id++;
@@ -967,7 +992,7 @@ public class AdminController {
                 initialize();
             }
         });
-        raw_amount.setText(String.valueOf(rawProductTableData.size()));
+        raw_amount.setText(String.valueOf(rawProductTableData.size()) + " шт.");
     }
 
     private void fillRawProductsDataList() {
@@ -976,8 +1001,8 @@ public class AdminController {
             Button button = new Button("Ред.");
             rawProductTableData.add(new ProductDto(id, rawProductEntity.getName(),
                                                    rawProductEntity.getRetailSupplier().getName(),
-                                                   rawProductEntity.getCost().toString(),
-                                                   rawProductEntity.getRawCost().toString(),
+                                                   rawProductEntity.getCost().toString() + "₴",
+                                                   rawProductEntity.getRawCost().toString() + "₴",
                                                    rawProductEntity.getDescription(),
                                                    button));
 
@@ -1046,7 +1071,7 @@ public class AdminController {
                 initialize();
             }
         });
-        suppliers_amount.setText(String.valueOf(supplierTableData.size()));
+        suppliers_amount.setText(String.valueOf(supplierTableData.size()) + " шт.");
     }
 
     private void fillSuppliersDataList() {
@@ -1098,7 +1123,7 @@ public class AdminController {
     private double getCurrentExpense() {
         double res = 0.0;
         for (SupplyEntity supplyEntity : supplyDao.findAllByDate(formatter.format(new Date()))) {
-            res += supplyEntity.getAmount()*supplyEntity.getRetailProductEntity().getRawCost();
+            res += supplyEntity.getAmount() * supplyEntity.getRetailProductEntity().getRawCost();
         }
         return res;
     }

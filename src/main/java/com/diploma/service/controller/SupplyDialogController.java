@@ -87,7 +87,7 @@ public class SupplyDialogController {
                                   remainsEntity.getRetailProductEntity().getId());
                 closeDialogStage(saveEvent);
             } else {
-                String toastMsg = "Форма заполнена не корректно!";
+                String toastMsg = "Форма заповнена не корректно!";
                 int toastMsgTime = 1500;
                 int fadeInTime = 300;
                 int fadeOutTime = 300;
@@ -104,7 +104,7 @@ public class SupplyDialogController {
             productList.add(productEntity.getName());
         }
         product.setItems(productList);
-        label.setText("Новая поставка");
+        label.setText("Нова закупка");
         amount.textProperty().addListener(((observableValue, s, t1) -> {
             if (!product.getSelectionModel().isEmpty()) {
                 RetailProductEntity oneByName = retailProductDao
@@ -136,7 +136,7 @@ public class SupplyDialogController {
                 remainsDao.save(remainsEntity);
                 closeDialogStage(saveEvent);
             } else {
-                String toastMsg = "Форма заполнена не корректно!";
+                String toastMsg = "Форма заповнена не корректно!";
                 int toastMsgTime = 1500;
                 int fadeInTime = 300;
                 int fadeOutTime = 300;

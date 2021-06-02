@@ -84,7 +84,7 @@ public class CancelDialogController {
 
                 closeDialogStage(saveEvent);
             } else {
-                String toastMsg = "Заполните все поля!";
+                String toastMsg = "Заповніть усі поля!";
                 int toastMsgTime = 1500;
                 int fadeInTime = 300;
                 int fadeOutTime = 300;
@@ -101,7 +101,7 @@ public class CancelDialogController {
             productList.add(productEntity.getName());
         }
         product.setItems(productList);
-        label.setText("Новое списание");
+        label.setText("Нове зписання");
 
         save_btn.setOnAction(saveEvent -> {
             if (isFilled()) {
@@ -127,7 +127,7 @@ public class CancelDialogController {
                 remainsDao.save(remainsEntity);
                 closeDialogStage(saveEvent);
             } else {
-                String toastMsg = "Форма заполнена не корректно!";
+                String toastMsg = "Форма заповнена не корректно!";
                 int toastMsgTime = 1500;
                 int fadeInTime = 300;
                 int fadeOutTime = 300;

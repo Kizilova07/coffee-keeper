@@ -80,7 +80,7 @@ public class LoginController {
         this.pin_ok_btn.setOnAction(actionEvent -> {
             UserEntity userEntity = userDao.findOneByPassword(pin_field.getText());
             if (userEntity == null) {
-                String toastMsg = "Wrong password!";
+                String toastMsg = "Невірний пароль!";
                 int toastMsgTime = 1500;
                 int fadeInTime = 300;
                 int fadeOutTime = 300;

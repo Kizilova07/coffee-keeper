@@ -49,7 +49,7 @@ public class SupplierDialogController {
                                    edit_supplier_phone.getText());
                 closeDialogStage(saveEvent);
             } else {
-                String toastMsg = "Форма заполнена не корректно!";
+                String toastMsg = "Форма заповнена не корректно!";
                 int toastMsgTime = 1500;
                 int fadeInTime = 300;
                 int fadeOutTime = 300;
@@ -60,7 +60,7 @@ public class SupplierDialogController {
     }
 
     public void initCreate() {
-        label.setText("Новый поставщик");
+        label.setText("Новий постачальник");
 
 
         edit_supplier_save_btn.setOnAction(saveEvent -> {
@@ -72,7 +72,7 @@ public class SupplierDialogController {
                 supplierDao.save(supplierEntity);
                 closeDialogStage(saveEvent);
             } else {
-                String toastMsg = "Форма заполнена не корректно!";
+                String toastMsg = "Форма заповнена не корректно!";
                 int toastMsgTime = 1500;
                 int fadeInTime = 300;
                 int fadeOutTime = 300;
