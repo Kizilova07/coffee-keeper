@@ -233,8 +233,9 @@ public class SaleController {
                 button.setOnAction(evt -> {
                     int index = getTableRow().getIndex();
                     CheckDto selected = check_table.getItems().get(index);
-                    if (Double.parseDouble(selected.getAmount()) > 1) {
-                        String[] split = selected.getAmount().split(" шт.");
+                    String[] split = selected.getAmount().split(" шт.");
+                    if (Double.parseDouble(split[0]) > 1) {
+
                         saleProductDao
                                 .update(saleProductDao.findOneByProduct(selected.getProductName(), currentSale.getId())
                                                       .getId(),

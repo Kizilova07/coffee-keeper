@@ -85,7 +85,7 @@
                                                                     <columns>
                                                                         <TableColumn fx:id="leaves_name_column" prefWidth="39.272705078125" text="№" />
                                                                         <TableColumn fx:id="leaves_product_column" prefWidth="467.78188705444336" text="Товар" />
-                                                                        <TableColumn fx:id="leaves_amount_column" prefWidth="184.14544677734375" text="На складе" />
+                                                                        <TableColumn fx:id="leaves_amount_column" prefWidth="184.14544677734375" text="На складі" />
                                                                     </columns>
                                                                 </TableView>
                                                                 <Label layoutX="39.0" layoutY="14.0" prefHeight="39.0" prefWidth="120.0" text="Залишки на">
